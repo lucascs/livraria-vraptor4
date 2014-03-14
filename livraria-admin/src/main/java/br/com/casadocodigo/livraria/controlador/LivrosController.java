@@ -10,11 +10,22 @@ import br.com.casadocodigo.livraria.persistencia.UmaEstanteQualquer;
 @Controller
 public class LivrosController {
 
-	public void formulario() {}
-	
+	public void formulario() {
+	}
+
 	public List<Livro> lista() {
 		Estante estante = new UmaEstanteQualquer();
 		return estante.todosOsLivros();
 	}
-	
+
+	public void salva(Livro livro) {
+		Estante estante = new UmaEstanteQualquer();
+		estante.guarda(livro);
+	}
+
+	public Livro edita(String isbn) {
+		Estante estante = new UmaEstanteQualquer();
+		Livro livroEncontrado = estante.buscaPorIsbn(isbn);
+		return livroEncontrado;
+	}
 }
