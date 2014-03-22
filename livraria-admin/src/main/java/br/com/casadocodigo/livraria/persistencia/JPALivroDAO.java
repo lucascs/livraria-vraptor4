@@ -5,9 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 
 import br.com.casadocodigo.livraria.modelo.Livro;
 
+@Transactional
 public class JPALivroDAO implements LivroDAO {
 
 	private EntityManager manager;
