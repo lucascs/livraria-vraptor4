@@ -13,10 +13,12 @@ import br.com.casadocodigo.livraria.modelo.Livro;
 public class LivrosController {
 
 	private Estante estante;
+	private Result result;
 
 	@Inject
-	public LivrosController(Estante estante) {
+	public LivrosController(Estante estante, Result result) {
 		this.estante = estante;
+		this.result = result;
 	}
 	/**
 	 * @deprecated Apenas para o CDI.
@@ -28,16 +30,16 @@ public class LivrosController {
 	public void formulario() {
 	}
 
-	public List<Livro> lista(Result result) {
-		result.include("baz", estante.todosOsLivros());
+	public List<Livro> lista() {
 		return estante.todosOsLivros();
 	}
 
 	public void salva(Livro livro) {
 		estante.guarda(livro);
+		result.redirectTo(this).lista();
 	}
 
-	public void edita(String isbn, Result result) {
+	public void edita(String isbn) {
 	    Livro livroEncontrado = estante.buscaPorIsbn(isbn);
 	    result.include(livroEncontrado);
 
