@@ -1,5 +1,18 @@
-<h1>Formulario</h1>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<h1>Formulario</h1>
+<ul class="errors">
+  <c:forEach items="${errors}" var="error">
+    <li>
+      <!-- o campo em que ocorreu o erro, ou o tipo do erro -->
+      ${error.category}:
+
+      <!-- a mensagem de erro de validação -->
+      ${error.message}
+    </li>
+  </c:forEach>
+</ul>
 <form action="${linkTo[LivrosController].salva }" method="post">
   <input type="hidden" name="livro.id" value="${livro.id }"/>
   <h2>Formulário de cadastro de livros</h2>
